@@ -1,0 +1,7 @@
+# Flakes
+
+.envrc
+.direnv
+
+# PlatformIO
+.pio
