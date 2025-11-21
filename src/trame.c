@@ -1,11 +1,6 @@
 #include <stdbool.h>
 
-typedef struct {
-  char const *name;
-  char const *format;
-} trame_t;
-
-trame_t TRAMES[] = {
+const trame_t TRAMES[] = {
   { "safety_stop", "" },
 
   { "run_command_motor", "a[params]" },
