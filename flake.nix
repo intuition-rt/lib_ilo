@@ -17,7 +17,7 @@
         hardeningDisable = ["fortify"];
 
         packages = with pkgs; [
-          clang
+          gcc
           platformio
           clang-tools
           scom

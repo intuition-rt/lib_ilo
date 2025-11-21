@@ -4,13 +4,33 @@
 typedef struct {
   char const *name;
   char const *format;
-} trame_t;
+} trame;
 
 typedef struct {
   char const *name;
   char const *value;
-} trame_param_t;
+} trame_param;
 
-char *build_trame(char const *name, trame_param_t *params);
+typedef unsigned int uint;
+
+#define TRAME_CHAR_START '<'
+#define TRAME_CHAR_END '>'
+
+#define TRAME_BUILDER_CHAR_PARAM_START '['
+#define TRAME_BUILDER_CHAR_PARAM_END ']'
+
+#define countof(arr) (sizeof (arr) / sizeof *(arr))
+
+char *exposed_build_trame(
+    char const *name,
+    unsigned int nb_params,
+    trame_param *params);
+
+#define build_trame(name, ...) \
+    exposed_build_trame( \
+        name, \
+        countof(((trame_param[])__VA_ARGS__)), \
+        ((trame_param[])__VA_ARGS__) \
+    )
 
 #endif

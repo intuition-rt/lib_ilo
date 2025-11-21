@@ -3,7 +3,7 @@
 
 #include "trame.h"
 
-const trame_t TRAMES[] = {
+const trame TRAMES[] = {
   { "safety_stop", "" },
 
   { "run_command_motor", "a[params]" },
@@ -97,7 +97,46 @@ const trame_t TRAMES[] = {
   { "set_auto_setup", "170a[auto_setup]" },
 };
 
-char *build_trame(char const *name, trame_param_t *params)
+char *exposed_build_trame(char const *name, uint nb_params, trame_param *params)
 {
+    static char buffer[512] = { 0 };
+    const trame *builder = NULL;
+    char const *argname;
+    char *p = buffer + 1;
+    char arg_cmp_buff[64];
+    uint c = 0;
+
+    memset(buffer, '\0', sizeof buffer);
+    buffer[0] = TRAME_CHAR_START;
+
+    for (unsigned int i = 0; i < countof(TRAMES); i++) {
+        if (!strcmp(name, TRAMES[i].name)) {
+            builder = TRAMES + i;
+            goto found;
+        }
+    }
     return NULL;
+found:
+    for (char const *fmt = builder->format; *fmt != '\0';) {
+        if (*fmt != TRAME_BUILDER_CHAR_PARAM_START) {
+            *p++ = *fmt++;
+            continue;
+        }
+
+        argname = ++fmt;
+        for (c = 0; *fmt++ != TRAME_BUILDER_CHAR_PARAM_END; c++);
+
+        memcpy(arg_cmp_buff, argname, c);
+        arg_cmp_buff[c] = '\0';
+
+        for (unsigned int j = 0; j < nb_params; j++) {
+            if (!strcmp(arg_cmp_buff, params[j].name)) {
+                memcpy(p, params[j].value, strlen(params[j].value));
+                p += strlen(params[j].value);
+            }
+        }
+    }
+
+    *p++ = TRAME_CHAR_END;
+    return buffer;
 }
