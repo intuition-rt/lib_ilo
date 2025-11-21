@@ -1,0 +1,24 @@
+-Wall
+-Wextra
+-Wunused -Wpedantic
+-Wno-unused-parameter
+-Wunused-result
+-Wp,-U_FORTIFY_SOURCE
+-Wcast-align
+-Wcast-qual
+-Wduplicated-branches
+-Wduplicated-cond
+-Wformat=2
+-Wstrict-aliasing=0
+-Wstrict-prototypes
+-Wunreachable-code
+-Wno-discarded-qualifiers
+
+-Werror=declaration-after-statement
+-Werror=format-nonliteral
+-Werror=int-conversion
+-Werror=return-type
+-Werror=write-strings
+-Werror=shadow
+
+-Wno-unknown-warning-option

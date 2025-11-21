@@ -1,7 +1,11 @@
 # Flakes
-
 .envrc
 .direnv
+
+# Build
+libilo.so
+.build
+compile_commands.json
 
 # PlatformIO
 .pio

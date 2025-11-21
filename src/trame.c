@@ -1,4 +1,7 @@
 #include <stdbool.h>
+#include <string.h>
+
+#include "trame.h"
 
 const trame_t TRAMES[] = {
   { "safety_stop", "" },
@@ -54,7 +57,7 @@ const trame_t TRAMES[] = {
   { "get_single_motor_load", "65i[motor_index]" },
   { "get_single_motor_current", "66i[motor_index]" },
   { "get_single_motor_move", "67i[motor_index]" },
-  { "set_motors_ilo_acc" "680a[acc]" },
+  { "set_motors_ilo_acc", "680a[acc]" },
   { "get_motors_ilo_acc", "681" },
   { "set_tempo_pos", "690t[tempo_pos]" },
   { "get_tempo_pos", "691" },
@@ -93,3 +96,8 @@ const trame_t TRAMES[] = {
   { "set_review_date", "161s[date]" },
   { "set_auto_setup", "170a[auto_setup]" },
 };
+
+char *build_trame(char const *name, trame_param_t *params)
+{
+    return NULL;
+}

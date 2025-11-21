@@ -21,6 +21,7 @@
           platformio
           clang-tools
           scom
+          compiledb
         ];
       };
     });
