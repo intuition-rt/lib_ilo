@@ -11,7 +11,7 @@ CFLAGS += $(shell cat $/warning_flags.txt)
 all: libilo.so
 
 libilo.so: $(OBJS)
-	$(LINK.c) -o $@ -shared $(OBJS)
+	$(LINK.c) -shared  -o $@ $(OBJS)
 	@ $(LOG_TIME) "$(C_GREEN) SO $(C_PURPLE) $(notdir $@) $(C_RESET)"
 
 $(BUILD_DIR)/%.o: %.c

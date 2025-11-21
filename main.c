@@ -4,12 +4,7 @@
 
 int main(void)
 {
-    char *p = build_trame(
-        "set_wifi_credentials", {
-            { "ssid", "my_super_ssid" },
-            { "password", "12345678" },
-        }
-    );
+    char *p = build_simple_trame("get_motors_ilo_acc");
 
     printf("[%s]\n", p);
 }

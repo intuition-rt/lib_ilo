@@ -26,6 +26,10 @@ char *exposed_build_trame(
     unsigned int nb_params,
     trame_param *params);
 
+
+#define build_simple_trame(name) \
+    exposed_build_trame(name, 0, NULL)
+
 #define build_trame(name, ...) \
     exposed_build_trame( \
         name, \
