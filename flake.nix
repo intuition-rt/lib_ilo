@@ -5,8 +5,10 @@
     self,
     nixpkgs,
   }: let
+    inherit (nixpkgs) lib;
+
     forAllSystems = function:
-      nixpkgs.lib.genAttrs [
+      lib.genAttrs [
         "x86_64-linux"
         "aarch64-linux"
         "aarch64-darwin"
@@ -22,7 +24,14 @@
           clang-tools
           scom
           compiledb
+          python3
         ];
+
+        env.NIX_CFLAGS_COMPILE =
+          let
+            pyVersion = lib.versions.majorMinor pkgs.python3.version;
+          in
+          "-isystem ${pkgs.python3}/include/python${pyVersion}";
       };
     });
 

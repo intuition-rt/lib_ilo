@@ -4,7 +4,7 @@ SRC := $(wildcard src/*.c)
 OBJS := $(SRC:%.c=$(BUILD_DIR)/%.o)
 
 CFLAGS := -std=c99 -pedantic
-CFLAGS += -iquote .
+CFLAGS += -iquote src
 CFLAGS += $(shell cat $/warning_flags.txt)
 
 .PHONY: all

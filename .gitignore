@@ -3,6 +3,7 @@
 .direnv
 
 # Build
+build
 libilo.so
 .build
 compile_commands.json
