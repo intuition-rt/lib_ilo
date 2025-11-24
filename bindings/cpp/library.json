@@ -10,5 +10,5 @@
   "build": {
     "srcDir": "bindings/cpp"
   },
-  "headers": "bindings/cpp/include/ilo.hpp"
+  "headers": "ilo.hpp"
 }
