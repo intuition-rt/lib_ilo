@@ -1,6 +1,9 @@
 #include "../include/ilo.hpp"
 
+
+extern "C" {
 #include "core/trame.h"
+}
 
 #undef build_trame
 #define build_trame(name, ...) \
