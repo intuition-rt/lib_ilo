@@ -6,8 +6,6 @@
 const trame TRAMES[] = {
   { "safety_stop", "" },
 
-  { "run_command_motor", "a[params]" },
-
   // general
   { "handshake_ilo", "ilo" },
   { "get_robot_version", "500y" },
@@ -47,6 +45,7 @@ const trame TRAMES[] = {
   { "set_animation_flag_false", "58" },
 
   // motors
+  { "run_command_motor", "a[params]" },
   { "ping_motor", "60i[ping_status_0]s[ping_status_1]" },
   { "drive_single_motor_speed", "610i[motor_index]a[acc]v[speed]" },
   { "get_single_motor_speed", "611i[motor_index]" },

@@ -8,10 +8,19 @@
 #define SERIAL_CONFIG SERIAL_8N1
 
 class Ilo {
+  void _sendMsg(String msg);
+
   public:
     Ilo();
 
+    // others
     void handshakeIlo();
+
+    // WiFi
     void setWifiCredentials(String ssid, String password);
     void getWifiCredentials();
+
+    // motors
+    void move(String direction, uint speed, uint acc);
+    void flat_movement(uint angle, uint distance);
 };

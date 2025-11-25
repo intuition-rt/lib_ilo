@@ -1,21 +1,15 @@
 #include <Arduino.h>
 
+#include "common.hpp"
 #include "../include/ilo.hpp"
-
-extern "C" {
-  #include "core/trame.h"
-}
-
-#undef build_trame
-#define build_trame(name, ...) \
-  ({ \
-    trame_param tmp_params[] = __VA_ARGS__; \
-    exposed_build_trame(name, countof(tmp_params), tmp_params); \
-  })
-
 
 Ilo::Ilo() {
   Serial2.begin(SERIAL_BAUD, SERIAL_CONFIG, SERIAL_RX_PIN, SERIAL_TX_PIN);
+}
+
+void Ilo::_sendMsg(String msg) {
+  printf("[%s]\n", msg.c_str());
+  Serial2.print(String(msg));
 }
 
 void Ilo::handshakeIlo() {
@@ -23,7 +17,7 @@ void Ilo::handshakeIlo() {
       "handshake_ilo", {}
   );
 
-  Serial2.println(String(p));
+  this->_sendMsg(String(p));
 }
 
 void Ilo::getWifiCredentials() {
@@ -31,7 +25,7 @@ void Ilo::getWifiCredentials() {
       "get_wifi_credentials", {}
   );
 
-  Serial2.println(String(p));
+  this->_sendMsg(String(p));
 }
 
 void Ilo::setWifiCredentials(String ssid, String password) {
@@ -42,6 +36,5 @@ void Ilo::setWifiCredentials(String ssid, String password) {
       }
   );
 
-  printf("[%s]\n", p);
-  Serial2.print(String(p));
+  this->_sendMsg(String(p));
 }
