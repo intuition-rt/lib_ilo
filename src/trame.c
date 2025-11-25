@@ -103,7 +103,7 @@ char *exposed_build_trame(char const *name, uint nb_params, trame_param *params)
     const trame *builder = NULL;
     char const *argname;
     char *p = buffer + 1;
-    char arg_cmp_buff[64];
+    char arg_cmp_buff[128];
     uint c = 0;
 
     memset(buffer, '\0', sizeof buffer);
