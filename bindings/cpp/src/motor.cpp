@@ -89,3 +89,39 @@ void Ilo::flat_movement(uint angle, uint distance) {
 
   this->_sendMsg(String(builded_trame));
 }
+
+void Ilo::step(String direction, float step, bool finish_state, bool display_led) {
+  if (direction == "front" || direction == "back" || direction == "right" || direction == "left") {
+    if (step > 100 || step < 0.01)
+      return printf(LOG_PREFIX LOG_ERROR "Step must be between 100 and 0.01\n"), (void)(0);
+
+    if (!step)
+      step = 1;
+    step *= 100;
+  } else if (direction == "rot_clock" || direction == "rot_trigo") {
+    if (step < 0.01)
+      return printf(LOG_PREFIX LOG_ERROR "Step must be higher than 0.01\n"), (void)(0);
+
+    if (!step)
+      step = 1;
+    step *= 90;
+  } else
+    return printf(LOG_PREFIX LOG_ERROR "Unknown direciton\n"), (void)(0);
+
+  String params;
+  if (direction == "front" || direction == "back")
+    params = "60vpx" + String(direction == "front" ? "1" : "0") + String(int(step)) + "r";
+  else if (direction == "left" || direction == "right")
+    params = "60vpxy" + String(direction == "left" ? "1" : "0") + String(int(step))+ "r";
+  else if (direction == "rot_trigo" || direction == "rot_clock")
+    params = "60vpxyr" + String(direction == "rot_trigo" ? "1" : "0") + String(int(step))+ "r";
+  params += String(display_led ? "t" : "f");
+
+  char *builded_trame = build_trame(
+      "run_command_motor", {
+        { "params", params.c_str() },
+      }
+  );
+
+  this->_sendMsg(String(builded_trame));
+}

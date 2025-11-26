@@ -23,4 +23,5 @@ class Ilo {
     // motors
     void move(String direction, uint speed, uint acc);
     void flat_movement(uint angle, uint distance);
+    void step(String direction, float step, bool finish_state = false, bool display_led = false);
 };
