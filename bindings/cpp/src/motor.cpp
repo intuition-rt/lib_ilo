@@ -54,3 +54,38 @@ void Ilo::move(String direction, uint speed, uint acc) {
   this->_sendMsg(String(builded_trame));
 }
 
+void Ilo::flat_movement(uint angle, uint distance) {
+  if (angle > 360)
+    return printf(LOG_PREFIX LOG_ERROR "Angle need to be between 0 and 360\n"), (void)(0);
+
+  int indice_x, indice_y;
+
+  if (angle >= 0 || angle < 90) {
+    indice_x = 1;
+    indice_y = 1;
+  } else if (angle >= 90 || angle < 180) {
+    indice_x = 0;
+    indice_y = 1;
+  } else if (angle >= 180 || angle < 270) {
+    indice_x = 0;
+    indice_y = 0;
+  } else if (angle >= 270 || angle <= 360) {
+    indice_x = 1;
+    indice_y = 0;
+  }
+
+  int radian = angle * 3.141592653 / 180;
+  int distance_x = abs(int(cos(radian) * distance));
+  int distance_y = abs(int(sin(radian) * distance));
+  
+  String params = "vpx" + String(indice_x) + String(distance_x) +
+    "y" + String(indice_y) + String(distance_y); 
+
+  char *builded_trame = build_trame(
+      "run_command_motor", {
+        { "params", params.c_str() },
+      }
+  );
+
+  this->_sendMsg(String(builded_trame));
+}
