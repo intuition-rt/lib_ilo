@@ -79,7 +79,7 @@ void Ilo::flat_movement(uint angle, uint distance) {
   int distance_y = abs(int(sin(radian) * distance));
   
   String params = "vpx" + String(indice_x) + String(distance_x) +
-    "y" + String(indice_y) + String(distance_y); 
+    "y" + String(indice_y) + String(distance_y) + "r"; 
 
   char *builded_trame = build_trame(
       "run_command_motor", {
