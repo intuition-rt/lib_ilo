@@ -23,24 +23,28 @@ PyObject *simple_trame_getter(char const *tr_name, PyObject *args)
 static
 PyObject *py__safety_stop(PyObject *self, PyObject *args)
 {
+    (void)self;
     return simple_trame_getter("safety_stop", args);
 }
 
 static
 PyObject *py__handshake_ilo(PyObject *self, PyObject *args)
 {
+    (void)self;
     return simple_trame_getter("handshake_ilo", args);
 }
 
 static
 PyObject *py__get_name(PyObject *self, PyObject *args)
 {
+    (void)self;
     return simple_trame_getter("get_hostname", args);
 }
 
 static
 PyObject *py__get_robot_version(PyObject *self, PyObject *args)
 {
+    (void)self;
     return simple_trame_getter("get_robot_version", args);
 }
 
@@ -50,6 +54,7 @@ PyObject *py__start_firmware_upload(PyObject *self, PyObject *args)
     char *p;
     int size;
 
+    (void)self;
     if (!PyArg_ParseTuple(args, "i", &size))
         return NULL;
     p = build_trame("start_firmware_upload", size);
@@ -62,6 +67,7 @@ PyObject *py__start_trame_s(PyObject *self, PyObject *args)
     char *p;
     char *trame_s_param;
 
+    (void)self;
     if (!PyArg_ParseTuple(args, "s", &trame_s_param))
         return NULL;
     p = build_trame("start_trame_s", trame_s_param);
@@ -71,6 +77,7 @@ PyObject *py__start_trame_s(PyObject *self, PyObject *args)
 static
 PyObject *py__stop_tasks(PyObject *self, PyObject *args)
 {
+    (void)self;
     return simple_trame_getter("stop_tasks", args);
 }
 
@@ -90,12 +97,13 @@ PyMethodDef ILO_BINDING_METHODS[] = {
 static
 struct PyModuleDef MODULE = {
     PyModuleDef_HEAD_INIT,
-    "ilo_binding",
-    NULL,
-    -1,
-    ILO_BINDING_METHODS
+    .m_name = "ilo_binding",
+    .m_doc = NULL,
+    .m_size = -1,
+    .m_methods = ILO_BINDING_METHODS
 };
 
+// NOLINTNEXTLINE(readability-identifier-naming): mendatory func name
 PyMODINIT_FUNC PyInit_ilo_binding(void)
 {
     PyObject *mod = PyModule_Create(&MODULE);
