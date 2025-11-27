@@ -1,6 +1,8 @@
 #ifndef TRAME_H
   #define TRAME_H
 
+  #include <stddef.h>
+
 typedef struct {
   char const *name;
   char const *format;
@@ -17,6 +19,7 @@ typedef unsigned int uint;
 #define TRAME_CHAR_END '>'
 
 #define TRAME_BUILDER_CHAR_PARAM_START '['
+#define TRAME_BUILDER_CHAR_PARAM_SEP ':'
 #define TRAME_BUILDER_CHAR_PARAM_END ']'
 
 #define countof(arr) (sizeof (arr) / sizeof *(arr))
@@ -45,6 +48,9 @@ char *exposed_build_trame(
 
 char *stringify_trame_param_int(int value);
 char *stringify_trame_param_s(char *value);
+
+extern const trame TRAMES[];
+extern const size_t TRAME_COUNT;
 
 #define PARAM(v) (trame_param){ #v, stringify_trame_param(v) }
 #define EXPAND(...) __VA_ARGS__

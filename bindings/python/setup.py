@@ -21,12 +21,12 @@ def find_sources(basepath: str) -> Iterator[str]:
         yield fullpath
 
 
-ilo_binding = Extension(
-    "ilo_binding",
-    sources=list(find_sources("ilo_binding")),
-    include_dirs=["ilo_binding"],
+ilo_binding_ext = Extension(
+    "ilo_binding_ext",
+    sources=list(find_sources("ilo_binding_ext")),
+    include_dirs=["ilo_binding_ext"],
     language="c",
 )
 
 if __name__ == "__main__":
-    setup(ext_modules=[ilo_binding])
+    setup(ext_modules=[ilo_binding_ext])
