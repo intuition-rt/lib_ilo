@@ -22,8 +22,22 @@ PyObject *py__get_name(PyObject *self, PyObject *args)
 }
 
 static
+PyObject *py__start_firmware_upload(PyObject *self, PyObject *args)
+{
+    char *p;
+    int size;
+
+    if (!PyArg_ParseTuple(args, "i", &size))
+        return NULL;
+    p = build_trame("start_firmware_upload", size);
+    printf("%s\n", p);
+    return PyUnicode_FromString(p);
+}
+
+static
 PyMethodDef ILO_BINDING_METHODS[] = {
-    {"get_name", py__get_name, METH_VARARGS, "."},
+    {"get_name", py__get_name, METH_VARARGS, NULL},
+    {"start_firmware_upload", py__start_firmware_upload, METH_VARARGS, NULL},
     {NULL, NULL, 0, NULL}
 };
 
