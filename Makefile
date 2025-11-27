@@ -3,7 +3,7 @@ BUILD_DIR := .build
 SRC := $(wildcard src/*.c)
 OBJS := $(SRC:%.c=$(BUILD_DIR)/%.o)
 
-CFLAGS := -std=c99 -pedantic -fPIC
+CFLAGS := -std=c11 -pedantic -fPIC
 CFLAGS += -iquote src
 CFLAGS += $(shell cat $/warning_flags.txt)
 
