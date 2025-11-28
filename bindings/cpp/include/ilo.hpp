@@ -33,6 +33,8 @@ class Ilo {
     void set_led_captor(uint8_t brightness=200);
     void set_led_color(uint8_t r, uint8_t g, uint8_t b);
     void set_led_shape(String shape);
+    void set_led_anim(String anim, uint repeat=1);
+    void set_led_single(String type, int id, uint8_t r, uint8_t g, uint8_t b, uint8_t brightness=100);
 
     // sensors
     void reset_angle();
