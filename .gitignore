@@ -8,5 +8,8 @@ libilo.so
 .build
 compile_commands.json
 
+# C binaries
+trame-exporter
+
 # PlatformIO
 .pio

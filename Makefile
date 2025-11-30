@@ -42,6 +42,14 @@ install: $(NAME_release)
 uninstall:
 	$(RM) $(BINDIR)/$(NAME_release)
 
+trame-exporter:
+	$(LINK.c) -o $@ generators/generate-trame-json.c
+
+artefacts:
+	@ mkdir -p $@
+
+artefacts/trames.json: trame-exporter artefacts
+	./$< > $@
 
 V ?= 0
 ifneq ($(V),0)
