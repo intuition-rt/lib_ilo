@@ -7,8 +7,5 @@
   "homepage": "https://ilorobot.com/",
   "frameworks": "*",
   "platforms": "*",
-  "build": {
-    "srcDir": "bindings/cpp"
-  },
   "headers": "ilo.hpp"
 }

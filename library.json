@@ -1,1 +1,14 @@
-bindings/cpp/library.json
+{
+  "name": "ilo",
+  "version": "0.1",
+  "description": "ilo lib",
+  "keywords": "ilo, ilo-robot, ilorobot",
+  "license": "MIT",
+  "homepage": "https://ilorobot.com/",
+  "frameworks": "*",
+  "platforms": "*",
+  "build": {
+    "srcDir": "bindings/cpp"
+  },
+  "headers": "ilo.hpp"
+}
