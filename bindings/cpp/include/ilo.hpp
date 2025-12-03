@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
+#include <vector>
 
 #define SERIAL_RX_PIN 17
 #define SERIAL_TX_PIN 16
@@ -15,6 +16,7 @@ class Ilo {
 
     // others
     void handshakeIlo();
+    void set_debug_state(bool debug);
 
     // WiFi
     void setWifiCredentials(String ssid, String password);
@@ -23,11 +25,12 @@ class Ilo {
     // motors
     void move(String direction, uint speed, uint acc);
     void flat_movement(uint angle, uint distance);
-    void step(String direction, float step, bool finish_state = false, bool display_led = false);
+    void step(String direction, float step = 1, bool finish_state = false, bool display_led = false);
     void stop();
     void pause(uint duration = 1);
     void rotation(int angle, bool display_led=false);
     void set_pid(uint kp, uint ki, uint kd);
+    void list_order(std::vector<String> list);
 
     // led
     void set_led_captor(uint8_t brightness=200);

@@ -110,11 +110,11 @@ void Ilo::step(String direction, float step, bool finish_state, bool display_led
 
   String params;
   if (direction == "front" || direction == "back")
-    params = "60vpx" + String(direction == "front" ? "1" : "0") + String(int(step)) + "r";
+    params = "60vpx" + String(direction == "front" ? "1" : "0") + String(int(step)) + "yr";
   else if (direction == "left" || direction == "right")
-    params = "60vpxy" + String(direction == "left" ? "1" : "0") + String(int(step))+ "r";
+    params = "60vpxy" + String(direction == "right" ? "1" : "0") + String(int(step))+ "r";
   else if (direction == "rot_trigo" || direction == "rot_clock")
-    params = "60vpxyr" + String(direction == "rot_trigo" ? "1" : "0") + String(int(step))+ "r";
+    params = "60vpxyr" + String(direction == "rot_trigo" ? "1" : "0") + String(int(step));
   params += String(display_led ? "t" : "f");
 
   char *builded_trame = build_trame(
@@ -175,4 +175,9 @@ void Ilo::set_pid(uint kp, uint ki, uint kd) {
   );
 
   this->_sendMsg(String(builded_trame));
+}
+
+void Ilo::list_order(std::vector<String> list) {
+  for (auto &order : list)
+    this->step(order);
 }
