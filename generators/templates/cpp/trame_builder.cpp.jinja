@@ -1,1 +1,35 @@
-// Auto-generated primitive
+// Auto-generated primitives for ilo communication
+// This file is generated. Do not edit manually.
+
+#include <string>
+#include <sstream>
+
+{% set type_map = {
+    "boolean": "bool",
+    "integer": "int",
+    "string": "std::string",
+    "float": "float"
+} %}
+
+{% for t in trames %}
+/**
+ * {{ t.doc if t.doc else ("Primitive for " ~ t.name) }}
+ */
+inline std::string {{ t.name }}(
+    {%- for p in t.parameters -%}
+        {{ type_map[p.type] }} {{ p.name }}
+        {%- if not loop.last -%}, {% endif %}
+    {%- endfor -%}
+) {
+    std::ostringstream oss;
+    {# emit parts #}
+    {%- for i in range(t.trame_parts|length) %}
+        oss << "{{ t.trame_parts[i] }}";
+        {% if i < t.parameters|length %}
+        oss << {{ t.parameters[i].name }};
+        {% endif %}
+    {%- endfor %}
+    return oss.str();
+}
+
+{% endfor %}
