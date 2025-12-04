@@ -35,7 +35,8 @@ const trame TRAMES[] = {
 
   // LEDs
   { "get_led_color", "50" },
-  { "set_led_color", "51r[i:red]g[i:green]b[i:blue]" },
+  { "set_led_color_circle", "511r[s:r]g[s:g]b[s:b]" },
+  { "set_led_color_circle", "512r[s:r]g[s:g]b[s:b]" },
   { "set_led_shape", "52v[s:shape]" },
   { "set_led_mode", "53[s:mode]/[i:nb_loop]" },
   { "set_led_captor", "54l[i:brightness]" },
