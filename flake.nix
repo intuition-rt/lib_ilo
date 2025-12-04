@@ -24,7 +24,7 @@
           clang-tools
           scom
           compiledb
-          python3
+          (python3.withPackages (p: [ p.jinja2 ]))
         ];
 
         env.NIX_CFLAGS_COMPILE =

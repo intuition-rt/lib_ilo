@@ -1,0 +1,47 @@
+name: Generate Artefacts
+
+on:
+  push:
+    paths:
+      - "generators/**"
+      - "src/**"
+      - ".github/workflows/generate_artefacts.yml"
+  workflow_dispatch:
+
+jobs:
+  generate-and-push:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      actions: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python deps
+        run: |
+          pip install jinja2 --disable-pip-version-check
+
+      - name: Run primitive generator
+        run: |
+          make primitives
+
+      - name: Commit artefacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -f artefacts/
+
+          git commit -m "Regenerate artefacts automatically [skip ci]"
+          git push

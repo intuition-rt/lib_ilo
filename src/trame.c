@@ -42,7 +42,6 @@ const trame TRAMES[] = {
   { "set_led_single", "55t[s:type]d[i:id]r[i:red]g[i:green]b[i:blue]" },
   { "display_word", "56w[s:word]d[i:delay]/[i:nb_loops]" },
   { "display_word_slide", "57" },
-  { "get_product_id", "150" },
   { "set_animation_flag_false", "58" },
 
   // motors
@@ -51,7 +50,7 @@ const trame TRAMES[] = {
   { "drive_single_motor_speed", "610i[i:motor_index]a[i:acc]v[i:speed]" },
   { "get_single_motor_speed", "611i[i:motor_index]" },
   { "drive_single_motor_angle", "620i[i:motor_index]a[i:acc]v[i:vel]p[i:position]" },
-  { "get_single_motor_angle", "621i[:motor_index]" },
+  { "get_single_motor_angle", "621i[i:motor_index]" },
   { "get_single_motor_temp", "63i[i:motor_index]" },
   { "get_single_motor_volt", "64i[i:motor_index]" },
   { "get_single_motor_load", "65i[i:motor_index]" },
