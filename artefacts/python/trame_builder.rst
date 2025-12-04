@@ -173,9 +173,16 @@ This section documents the generated Python primitives.
    **Returns:** ``str`` — the encoded trame.
 
 
-.. py:function:: set_led_color(red: int, green: int, blue: int)
+.. py:function:: set_led_color_circle(r: str, g: str, b: str)
 
-   Primitive for set_led_color
+   Primitive for set_led_color_circle
+
+   **Returns:** ``str`` — the encoded trame.
+
+
+.. py:function:: set_led_color_circle(r: str, g: str, b: str)
+
+   Primitive for set_led_color_circle
 
    **Returns:** ``str`` — the encoded trame.
 
