@@ -42,14 +42,19 @@ install: $(NAME_release)
 uninstall:
 	$(RM) $(BINDIR)/$(NAME_release)
 
-trame-exporter:
+trame-exporter: src/trame.c
 	$(LINK.c) -o $@ generators/generate-trame-json.c
+	@ $(LOG_TIME) "$(C_GREEN) CC $(C_PURPLE) $(notdir $@) $(C_RESET)"
 
-artefacts:
-	@ mkdir -p $@
+artefacts/trames.json: trame-exporter
+	@ ./$< > $@
+	@ $(LOG_TIME) "$(C_GREEN) GEN $(C_PURPLE) $(notdir $@) $(C_RESET)"
 
-artefacts/trames.json: trame-exporter artefacts
-	./$< > $@
+
+.PHONY: primitives
+primitives: artefacts/trames.json
+	@ python generators/generate_primitives.py
+
 
 V ?= 0
 ifneq ($(V),0)
@@ -78,17 +83,17 @@ endif
 
 NOW = $(shell date +%s%3N)
 
-ifndef STIME
-STIME := $(call NOW)
-endif
+STIME := $(shell date +%s%3N)
+export STIME
 
-TIME_NS = $(shell expr $(call NOW) - $(STIME))
-TIME_MS = $(shell expr $(call TIME_NS))
+define TIME_MS
+$$( expr \( $$(date +%s%3N) - $(STIME) \))
+endef
 
 BOXIFY = "[$(C_BLUE)$(1)$(C_RESET)] $(2)"
 
 ifneq ($(shell command -v printf),)
-  LOG_TIME = printf $(call BOXIFY, %6s ,$(strip %b\n)) "$(call TIME_MS)"
+  LOG_TIME = printf $(call BOXIFY, %6s , %b\n) "$(call TIME_MS)"
 else
   LOG_TIME = echo -e $(call BOXIFY, $(call TIME_MS) ,)
 endif
