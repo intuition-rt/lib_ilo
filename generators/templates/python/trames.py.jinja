@@ -1,5 +1,36 @@
 """Auto-generated primitives for ilo communication"""
 
+import inspect
+from functools import wraps
+from typing import get_type_hints
+
+
+def _typecheck(func):
+    hints = get_type_hints(func)
+    sig = inspect.signature(func)
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        bound = sig.bind_partial(*args, **kwargs)
+        bound.apply_defaults()
+
+        for name, value in bound.arguments.items():
+            if name not in hints:
+                continue
+
+            expected = hints[name]
+
+            if not isinstance(value, expected):
+                raise TypeError(
+                    f"Parameter '{name}' of '{func.__name__}' must be {expected.__name__}, "
+                    f"got {type(value).__name__}"
+                )
+
+        return func(*args, **kwargs)
+
+    return wrapper
+
+
 {% set type_map = {
     "boolean": "bool",
     "integer": "int",
@@ -8,6 +39,7 @@
 } %}
 
 {% for t in trames %}
+@_typecheck
 def {{ t.name }}(
     {%- for p in t.parameters -%}
         {{- p.name -}}: {{ type_map[p.type] }}
@@ -25,5 +57,16 @@ def {{ t.name }}(
             {{- '{' ~ t.parameters[i].name ~ '}' -}}
         {% endif %}
     {% endfor %}"
-{{ '\n\n' }}
+    {%- if not loop.last -%}
+      {{- '\n\n' -}}
+    {% else %}
+      {{- '\n' -}}
+    {% endif %}
 {% endfor %}
+
+
+__all__ = (
+{% for t in trames %}
+  "{{ t.name }}",
+{% endfor %}
+)
