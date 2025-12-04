@@ -70,9 +70,23 @@ def escape_fstring_literal(s: str) -> str:
     return s.replace("{", "{{").replace("}", "}}")
 
 
+def format_trame(trame: Trame):
+    parts = []
+
+    for part, param in zip(trame["trame_parts"], trame["parameters"]):
+        parts.append(f'{part}[{param["name"]}]')
+
+    if len(trame["trame_parts"]) > len(trame["parameters"]):
+        parts.append(trame["trame_parts"][-1])
+
+
+    return '``<' + "".join(parts) + '>``'
+
+
 def main():
     with TRAMES_JSON.open() as f:
-        trames_list = [rework_trame(trame) for trame in json.load(f)]
+        trames_formats = json.load(f)
+        trames = [rework_trame(trame) for trame in trames_formats]
 
     env = Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),
@@ -81,6 +95,7 @@ def main():
     )
 
     env.filters["escape_fstring"] = escape_fstring_literal
+    env.filters["format_trame"] = format_trame
 
     jinja_templates_per_langs = (
       (lang_dir, template_file)
@@ -96,7 +111,8 @@ def main():
 
         template = env.get_template(str(rel_path))
         rendered = template.render(
-            trames=trames_list,
+            trames=trames,
+            trames_formats=trames_formats,
             lang=lang_dir.name
         )
 

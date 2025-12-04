@@ -1,0 +1,18 @@
+========================
+ILO Trame Specification
+========================
+
+This table is generated automatically from ``trame.json``.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 80
+   :class: ilo-trame-table
+
+   * - **Name**
+     - **Trame Format**
+
+   {% for t in trames %}
+   * - ``{{ t.name }}``
+     - {{ t | format_trame }}
+   {% endfor %}
