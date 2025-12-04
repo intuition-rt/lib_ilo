@@ -66,6 +66,10 @@ def rework_trame(trame: Dict[str, str]) -> Trame:
     )
 
 
+def escape_fstring_literal(s: str) -> str:
+    return s.replace("{", "{{").replace("}", "}}")
+
+
 def main():
     with TRAMES_JSON.open() as f:
         trames_list = [rework_trame(trame) for trame in json.load(f)]
@@ -75,6 +79,8 @@ def main():
         trim_blocks=True,
         lstrip_blocks=True,
     )
+
+    env.filters["escape_fstring"] = escape_fstring_literal
 
     jinja_templates_per_langs = (
       (lang_dir, template_file)

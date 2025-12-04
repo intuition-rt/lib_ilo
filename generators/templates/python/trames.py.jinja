@@ -20,7 +20,7 @@ def {{ t.name }}(
     """Primitive for {{ t.name }}"""
     {% endif %}
     return f"{% for i in range(t.trame_parts|length) %}
-        {{- t.trame_parts[i] -}}
+        {{- t.trame_parts[i] | escape_fstring -}}
         {% if i < t.parameters|length %}
             {{- '{' ~ t.parameters[i].name ~ '}' -}}
         {% endif %}
