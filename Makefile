@@ -54,6 +54,9 @@ artefacts/trames.json: trame-exporter
 .PHONY: primitives
 primitives: artefacts/trames.json
 	@ python generators/generate_primitives.py
+	@ cp artefacts/flutter/trame_builder.dart bindings/flutter/lib/src/trame_builder.dart
+	@ $(LOG_TIME) "$(C_GREEN) CP $(C_PURPLE) trame_builder.dart $(C_RESET)"
+
 
 
 .PHONY: doc

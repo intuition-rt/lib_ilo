@@ -42,6 +42,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add -f artefacts/
+          git add -f bindings/flutter/lib/src/trame_builder.dart
 
           git commit -m "Regenerate artefacts automatically [skip ci]" \
               || echo "nothing to commit"
