@@ -62,7 +62,7 @@ This table is generated automatically from ``trame.json``.
      - ``<50>``
    * - ``set_led_color_circle``
      - ``<511r[r]g[g]b[b]>``
-   * - ``set_led_color_circle``
+   * - ``set_led_color_circle_2``
      - ``<512r[r]g[g]b[b]>``
    * - ``set_led_shape``
      - ``<52v[shape]>``

@@ -10,6 +10,7 @@
  */
 inline std::string safety_stop() {
     std::ostringstream oss;
+        oss << "";
     return oss.str();
 }
 
@@ -38,6 +39,7 @@ inline std::string start_firmware_upload(int size) {
     std::ostringstream oss;
         oss << "500x";
         oss << size;
+        oss << "";
     return oss.str();
 }
 
@@ -48,6 +50,7 @@ inline std::string start_trame_s(std::string trame_s_params) {
     std::ostringstream oss;
         oss << "0";
         oss << trame_s_params;
+        oss << "";
     return oss.str();
 }
 
@@ -112,6 +115,7 @@ inline std::string set_line_threshold_value(int threshold) {
     std::ostringstream oss;
         oss << "13t";
         oss << threshold;
+        oss << "";
     return oss.str();
 }
 
@@ -234,13 +238,14 @@ inline std::string set_led_color_circle(std::string r, std::string g, std::strin
         oss << g;
         oss << "b";
         oss << b;
+        oss << "";
     return oss.str();
 }
 
 /**
- * Primitive for set_led_color_circle
+ * Primitive for set_led_color_circle_2
  */
-inline std::string set_led_color_circle(std::string r, std::string g, std::string b) {
+inline std::string set_led_color_circle_2(std::string r, std::string g, std::string b) {
     std::ostringstream oss;
         oss << "512r";
         oss << r;
@@ -248,6 +253,7 @@ inline std::string set_led_color_circle(std::string r, std::string g, std::strin
         oss << g;
         oss << "b";
         oss << b;
+        oss << "";
     return oss.str();
 }
 
@@ -258,6 +264,7 @@ inline std::string set_led_shape(std::string shape) {
     std::ostringstream oss;
         oss << "52v";
         oss << shape;
+        oss << "";
     return oss.str();
 }
 
@@ -270,6 +277,7 @@ inline std::string set_led_mode(std::string mode, int nb_loop) {
         oss << mode;
         oss << "/";
         oss << nb_loop;
+        oss << "";
     return oss.str();
 }
 
@@ -280,6 +288,7 @@ inline std::string set_led_captor(int brightness) {
     std::ostringstream oss;
         oss << "54l";
         oss << brightness;
+        oss << "";
     return oss.str();
 }
 
@@ -298,6 +307,7 @@ inline std::string set_led_single(std::string type, int id, int red, int green, 
         oss << green;
         oss << "b";
         oss << blue;
+        oss << "";
     return oss.str();
 }
 
@@ -312,6 +322,7 @@ inline std::string display_word(std::string word, int delay, int nb_loops) {
         oss << delay;
         oss << "/";
         oss << nb_loops;
+        oss << "";
     return oss.str();
 }
 
@@ -340,6 +351,7 @@ inline std::string run_command_motor(std::string params) {
     std::ostringstream oss;
         oss << "a";
         oss << params;
+        oss << "";
     return oss.str();
 }
 
@@ -352,6 +364,7 @@ inline std::string ping_motor(int ping_status_0, int ping_status_1) {
         oss << ping_status_0;
         oss << "s";
         oss << ping_status_1;
+        oss << "";
     return oss.str();
 }
 
@@ -366,6 +379,7 @@ inline std::string drive_single_motor_speed(int motor_index, int acc, int speed)
         oss << acc;
         oss << "v";
         oss << speed;
+        oss << "";
     return oss.str();
 }
 
@@ -376,6 +390,7 @@ inline std::string get_single_motor_speed(int motor_index) {
     std::ostringstream oss;
         oss << "611i";
         oss << motor_index;
+        oss << "";
     return oss.str();
 }
 
@@ -392,6 +407,7 @@ inline std::string drive_single_motor_angle(int motor_index, int acc, int vel, i
         oss << vel;
         oss << "p";
         oss << position;
+        oss << "";
     return oss.str();
 }
 
@@ -402,6 +418,7 @@ inline std::string get_single_motor_angle(int motor_index) {
     std::ostringstream oss;
         oss << "621i";
         oss << motor_index;
+        oss << "";
     return oss.str();
 }
 
@@ -412,6 +429,7 @@ inline std::string get_single_motor_temp(int motor_index) {
     std::ostringstream oss;
         oss << "63i";
         oss << motor_index;
+        oss << "";
     return oss.str();
 }
 
@@ -422,6 +440,7 @@ inline std::string get_single_motor_volt(int motor_index) {
     std::ostringstream oss;
         oss << "64i";
         oss << motor_index;
+        oss << "";
     return oss.str();
 }
 
@@ -432,6 +451,7 @@ inline std::string get_single_motor_load(int motor_index) {
     std::ostringstream oss;
         oss << "65i";
         oss << motor_index;
+        oss << "";
     return oss.str();
 }
 
@@ -442,6 +462,7 @@ inline std::string get_single_motor_current(int motor_index) {
     std::ostringstream oss;
         oss << "66i";
         oss << motor_index;
+        oss << "";
     return oss.str();
 }
 
@@ -452,6 +473,7 @@ inline std::string get_single_motor_move(int motor_index) {
     std::ostringstream oss;
         oss << "67i";
         oss << motor_index;
+        oss << "";
     return oss.str();
 }
 
@@ -462,6 +484,7 @@ inline std::string set_motors_ilo_acc(int acc) {
     std::ostringstream oss;
         oss << "680a";
         oss << acc;
+        oss << "";
     return oss.str();
 }
 
@@ -481,6 +504,7 @@ inline std::string set_tempo_pos(int tempo_pos) {
     std::ostringstream oss;
         oss << "690t";
         oss << tempo_pos;
+        oss << "";
     return oss.str();
 }
 
@@ -504,6 +528,7 @@ inline std::string set_pid(int Kp, int Ki, int Kd) {
         oss << Ki;
         oss << "d";
         oss << Kd;
+        oss << "";
     return oss.str();
 }
 
@@ -523,6 +548,7 @@ inline std::string check_auto_mode(int current_auto_mode) {
     std::ostringstream oss;
         oss << "80";
         oss << current_auto_mode;
+        oss << "";
     return oss.str();
 }
 
@@ -535,6 +561,7 @@ inline std::string set_wifi_credentials(std::string ssid, std::string password) 
         oss << ssid;
         oss << "{|||}";
         oss << password;
+        oss << "";
     return oss.str();
 }
 
@@ -572,6 +599,7 @@ inline std::string set_name(std::string name) {
     std::ostringstream oss;
         oss << "94n";
         oss << name;
+        oss << "";
     return oss.str();
 }
 
@@ -582,6 +610,7 @@ inline std::string set_server_status(int status) {
     std::ostringstream oss;
         oss << "95s";
         oss << status;
+        oss << "";
     return oss.str();
 }
 
@@ -628,6 +657,7 @@ inline std::string set_debug_state(int state) {
     std::ostringstream oss;
         oss << "103s";
         oss << state;
+        oss << "";
     return oss.str();
 }
 
@@ -656,6 +686,7 @@ inline std::string set_manufacturing_date(std::string date) {
     std::ostringstream oss;
         oss << "121s";
         oss << date;
+        oss << "";
     return oss.str();
 }
 
@@ -675,6 +706,7 @@ inline std::string set_first_use_date(std::string date) {
     std::ostringstream oss;
         oss << "131s";
         oss << date;
+        oss << "";
     return oss.str();
 }
 
@@ -694,6 +726,7 @@ inline std::string set_product_version(std::string version) {
     std::ostringstream oss;
         oss << "141s";
         oss << version;
+        oss << "";
     return oss.str();
 }
 
@@ -713,6 +746,7 @@ inline std::string set_product_id(std::string product_id) {
     std::ostringstream oss;
         oss << "151s";
         oss << product_id;
+        oss << "";
     return oss.str();
 }
 
@@ -732,6 +766,7 @@ inline std::string set_review_date(std::string date) {
     std::ostringstream oss;
         oss << "161s";
         oss << date;
+        oss << "";
     return oss.str();
 }
 
@@ -742,6 +777,7 @@ inline std::string set_auto_setup(int auto_setup) {
     std::ostringstream oss;
         oss << "170a";
         oss << auto_setup;
+        oss << "";
     return oss.str();
 }
 

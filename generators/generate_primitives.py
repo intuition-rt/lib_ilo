@@ -50,7 +50,7 @@ def rework_trame(trame: Dict[str, str]) -> Trame:
     fmt = trame["format"]
 
     parts = re.split(r"\[[ifs]:[^\]]+\]", fmt)
-    parts = [p for p in parts if p]  # remove empty strings
+    # parts = [p for p in parts if p]  # remove empty strings
 
     param_matches = re.findall(r"\[([ifs]):([^\]]+)\]", fmt)
     parameters: List[TrameParam] = [
@@ -87,6 +87,15 @@ def main():
     with TRAMES_JSON.open() as f:
         trames_formats = json.load(f)
         trames = [rework_trame(trame) for trame in trames_formats]
+
+    # Deduplicate names
+    name_counts = {}
+    for trame in trames:
+        original_name = trame["name"]
+        count = name_counts.get(original_name, 0) + 1
+        name_counts[original_name] = count
+        if count > 1:
+            trame["name"] = f"{original_name}_{count}"
 
     env = Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),

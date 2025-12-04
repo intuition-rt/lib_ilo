@@ -1,0 +1,31 @@
+// Auto-generated primitives for ilo communication
+// This file is generated. Do not edit manually.
+
+class TrameBuilder {
+{% set type_map = {
+    "boolean": "bool",
+    "integer": "int",
+    "string": "String",
+    "float": "double"
+} %}
+
+{% for t in trames %}
+  /// {{ t.doc if t.doc else ("Primitive for " ~ t.name) }}
+  static String {{ t.name }}(
+    {%- for p in t.parameters -%}
+      {{ type_map[p.type] }} {{ p.name }}
+      {%- if not loop.last -%}, {% endif %}
+    {%- endfor -%}
+  ) {
+    StringBuffer buffer = StringBuffer();
+    {# emit parts #}
+    {%- for i in range(t.trame_parts|length) %}
+    buffer.write("{{ t.trame_parts[i] }}");
+      {% if i < t.parameters|length %}
+    buffer.write({{ t.parameters[i].name }});
+      {% endif %}
+    {%- endfor %}
+    return buffer.toString();
+  }
+{% endfor %}
+}

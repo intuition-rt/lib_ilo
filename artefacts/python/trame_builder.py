@@ -158,8 +158,8 @@ def set_led_color_circle(r: str, g: str, b: str) -> str:
     return f"511r{r}g{g}b{b}"
 
 @_typecheck
-def set_led_color_circle(r: str, g: str, b: str) -> str:
-    """Primitive for set_led_color_circle"""
+def set_led_color_circle_2(r: str, g: str, b: str) -> str:
+    """Primitive for set_led_color_circle_2"""
     return f"512r{r}g{g}b{b}"
 
 @_typecheck
@@ -429,7 +429,7 @@ __all__ = (
   "get_battery_info",
   "get_led_color",
   "set_led_color_circle",
-  "set_led_color_circle",
+  "set_led_color_circle_2",
   "set_led_shape",
   "set_led_mode",
   "set_led_captor",
