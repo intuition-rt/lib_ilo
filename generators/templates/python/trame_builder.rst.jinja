@@ -1,0 +1,21 @@
+Python Primitives API
+=====================
+
+This section documents the generated Python primitives.
+
+{% set type_map = {
+    "boolean": "bool",
+    "integer": "int",
+    "string": "str",
+    "float": "float"
+} %}
+
+{% for t in trames %}
+
+.. py:function:: {{ t.name }}({% for p in t.parameters %}{{ p.name }}: {{ type_map[p.type] }}{% if not loop.last %}, {% endif %}{% endfor %})
+
+   {{ t.doc or "Primitive for " ~ t.name }}
+
+   **Returns:** ``str`` — the encoded trame.
+
+{% endfor %}

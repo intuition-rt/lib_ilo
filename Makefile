@@ -56,6 +56,11 @@ primitives: artefacts/trames.json
 	@ python generators/generate_primitives.py
 
 
+.PHONY: doc
+doc:
+	$(MAKE) -C docs html
+
+
 V ?= 0
 ifneq ($(V),0)
   Q :=
