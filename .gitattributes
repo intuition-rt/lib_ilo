@@ -1,6 +1,7 @@
 artefacts/** linguist-generated
 
-*.png binary
-
 * text=lf
 * eol=lf
+
+*.png binary
+*.jpg binary
