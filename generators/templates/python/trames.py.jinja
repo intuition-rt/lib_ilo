@@ -1,1 +1,29 @@
-# Auto-generated primitives (Python)
+"""Auto-generated primitives for ilo communication"""
+
+{% set type_map = {
+    "boolean": "bool",
+    "integer": "int",
+    "string": "str",
+    "float": "float"
+} %}
+
+{% for t in trames %}
+def {{ t.name }}(
+    {%- for p in t.parameters -%}
+        {{- p.name -}}: {{ type_map[p.type] }}
+        {%- if not loop.last -%}, {% endif %}
+    {%- endfor -%}
+) -> str:
+    {% if t.doc %}
+    """{{ t.doc }}"""
+    {% else %}
+    """Primitive for {{ t.name }}"""
+    {% endif %}
+    return f"{% for i in range(t.trame_parts|length) %}
+        {{- t.trame_parts[i] -}}
+        {% if i < t.parameters|length %}
+            {{- '{' ~ t.parameters[i].name ~ '}' -}}
+        {% endif %}
+    {% endfor %}"
+{{ '\n\n' }}
+{% endfor %}
