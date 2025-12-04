@@ -43,5 +43,7 @@ jobs:
 
           git add -f artefacts/
 
-          git commit -m "Regenerate artefacts automatically [skip ci]"
-          git push
+          git commit -m "Regenerate artefacts automatically [skip ci]" \
+              || echo "nothing to commit"
+          git push \
+              || echo "nothing to push"
