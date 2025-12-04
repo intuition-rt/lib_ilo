@@ -1,5 +1,9 @@
 import json
+import re
+
 from pathlib import Path
+from typing import TypedDict, List, Dict
+
 from jinja2 import Environment, FileSystemLoader
 
 ROOT_DIR = Path(__file__).parent.resolve()
@@ -9,9 +13,62 @@ TEMPLATES_DIR = ROOT_DIR / "templates"
 OUTPUT_DIR = ROOT_DIR.parent / "artefacts"
 
 
+class TrameParam(TypedDict):
+    name: str
+    type: str
+
+
+class Trame(TypedDict):
+    name: str
+    trame_parts: List[str]
+    parameters: List[TrameParam]
+    doc: str
+
+
+PARAM_TYPE_MAP = {
+    "b": "boolean",
+    "i": "integer",
+    "s": "string",
+    "f": "float",
+}
+
+
+def rework_trame(trame: Dict[str, str]) -> Trame:
+    """
+    Transform a trame with "format" into structured trame-parts and parameters.
+    Example:
+      { "name": "move_motor", "format": "20ma[i:angle]s[i:speed]" }
+    -->
+      { "name": "move_motor",
+        "trame_parts": ["20ma", "s"],
+        "parameters": [
+            {"name": "angle", "type": "integer"},
+            {"name": "speed", "type": "integer"}
+        ]
+      }
+    """
+    fmt = trame["format"]
+
+    parts = re.split(r"\[[ifs]:[^\]]+\]", fmt)
+    parts = [p for p in parts if p]  # remove empty strings
+
+    param_matches = re.findall(r"\[([ifs]):([^\]]+)\]", fmt)
+    parameters: List[TrameParam] = [
+        {"name": name, "type": PARAM_TYPE_MAP.get(t, "unknown")}
+        for t, name in param_matches
+    ]
+
+    return Trame(
+        name=trame["name"],
+        trame_parts=parts,
+        parameters=parameters,
+        doc=trame.get("doc", ""),
+    )
+
+
 def main():
     with TRAMES_JSON.open() as f:
-        trames_list= json.load(f)
+        trames_list = [rework_trame(trame) for trame in json.load(f)]
 
     env = Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),
