@@ -1,0 +1,160 @@
+========================
+ILO Trame Specification
+========================
+
+This table is generated automatically from ``trame.json``.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 80
+   :class: ilo-trame-table
+
+   * - **Name**
+     - **Trame Format**
+
+   * - ``safety_stop``
+     - ``<>``
+   * - ``handshake_ilo``
+     - ``<ilo>``
+   * - ``get_robot_version``
+     - ``<500y>``
+   * - ``start_firmware_upload``
+     - ``<500x[size]>``
+   * - ``start_trame_s``
+     - ``<0[trame_s_params]>``
+   * - ``stop_tasks``
+     - ``<00>``
+   * - ``get_color_rgb_center``
+     - ``<10c>``
+   * - ``get_color_rgb_left``
+     - ``<10l>``
+   * - ``get_color_rgb_right``
+     - ``<10d>``
+   * - ``get_color_clear``
+     - ``<11>``
+   * - ``get_line``
+     - ``<12>``
+   * - ``set_line_threshold_value``
+     - ``<13t[threshold]>``
+   * - ``get_line_threshold_value``
+     - ``<14>``
+   * - ``get_accessory_status``
+     - ``<15>``
+   * - ``get_sensor_distance``
+     - ``<20>``
+   * - ``get_distance_front``
+     - ``<21>``
+   * - ``get_distance_right``
+     - ``<22>``
+   * - ``get_distance_back``
+     - ``<23>``
+   * - ``get_distance_left``
+     - ``<24>``
+   * - ``get_imu_info``
+     - ``<30>``
+   * - ``reset_angle``
+     - ``<31>``
+   * - ``get_raw_imu``
+     - ``<32>``
+   * - ``get_battery_info``
+     - ``<40>``
+   * - ``get_led_color``
+     - ``<50>``
+   * - ``set_led_color``
+     - ``<51r[red]g[green]b[blue]>``
+   * - ``set_led_shape``
+     - ``<52v[shape]>``
+   * - ``set_led_mode``
+     - ``<53[mode]/[nb_loop]>``
+   * - ``set_led_captor``
+     - ``<54l[brightness]>``
+   * - ``set_led_single``
+     - ``<55t[type]d[id]r[red]g[green]b[blue]>``
+   * - ``display_word``
+     - ``<56w[word]d[delay]/[nb_loops]>``
+   * - ``display_word_slide``
+     - ``<57>``
+   * - ``set_animation_flag_false``
+     - ``<58>``
+   * - ``run_command_motor``
+     - ``<a[params]>``
+   * - ``ping_motor``
+     - ``<60i[ping_status_0]s[ping_status_1]>``
+   * - ``drive_single_motor_speed``
+     - ``<610i[motor_index]a[acc]v[speed]>``
+   * - ``get_single_motor_speed``
+     - ``<611i[motor_index]>``
+   * - ``drive_single_motor_angle``
+     - ``<620i[motor_index]a[acc]v[vel]p[position]>``
+   * - ``get_single_motor_angle``
+     - ``<621i[motor_index]>``
+   * - ``get_single_motor_temp``
+     - ``<63i[motor_index]>``
+   * - ``get_single_motor_volt``
+     - ``<64i[motor_index]>``
+   * - ``get_single_motor_load``
+     - ``<65i[motor_index]>``
+   * - ``get_single_motor_current``
+     - ``<66i[motor_index]>``
+   * - ``get_single_motor_move``
+     - ``<67i[motor_index]>``
+   * - ``set_motors_ilo_acc``
+     - ``<680a[acc]>``
+   * - ``get_motors_ilo_acc``
+     - ``<681>``
+   * - ``set_tempo_pos``
+     - ``<690t[tempo_pos]>``
+   * - ``get_tempo_pos``
+     - ``<691>``
+   * - ``set_pid``
+     - ``<70p[Kp]i[Ki]d[Kd]>``
+   * - ``get_pid``
+     - ``<71>``
+   * - ``check_auto_mode``
+     - ``<80[current_auto_mode]>``
+   * - ``set_wifi_credentials``
+     - ``<90[ssid]{|||}[password]>``
+   * - ``get_wifi_credentials``
+     - ``<92>``
+   * - ``get_hostname``
+     - ``<93>``
+   * - ``get_hostname_legacy``
+     - ``<930>``
+   * - ``set_name``
+     - ``<94n[name]>``
+   * - ``set_server_status``
+     - ``<95s[status]>``
+   * - ``get_server_status``
+     - ``<96>``
+   * - ``get_accessory_data``
+     - ``<100>``
+   * - ``get_accessory_info``
+     - ``<101>``
+   * - ``very_very_usefull``
+     - ``<102>``
+   * - ``set_debug_state``
+     - ``<103s[state]>``
+   * - ``start_diag``
+     - ``<110>``
+   * - ``get_manufacturing_date``
+     - ``<120>``
+   * - ``set_manufacturing_date``
+     - ``<121s[date]>``
+   * - ``get_first_use_date``
+     - ``<130>``
+   * - ``set_first_use_date``
+     - ``<131s[date]>``
+   * - ``get_product_version``
+     - ``<140>``
+   * - ``set_product_version``
+     - ``<141s[version]>``
+   * - ``get_product_id``
+     - ``<150>``
+   * - ``set_product_id``
+     - ``<151s[product_id]>``
+   * - ``get_review_date``
+     - ``<160>``
+   * - ``set_review_date``
+     - ``<161s[date]>``
+   * - ``set_auto_setup``
+     - ``<170a[auto_setup]>``
