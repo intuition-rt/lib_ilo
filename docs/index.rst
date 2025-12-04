@@ -1,9 +1,16 @@
 Documentation
 =============
 
+Table of content
+----------------
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-   :hidden:
 
    api/index
+
+
+.. toctree::
+    :maxdepth: 10
+    :caption: Reference
+    :hidden:
